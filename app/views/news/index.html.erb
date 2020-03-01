@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<title>My Newsfeed</title>
+
+<body>
+
+    <h1>Newsfeed</h1>
+    <div>
+    <% if @user.nil? %>
+            <h1> Enter user_id in url as (http://localhost:3000/news?user_id=id) </h1>
+       <% else %>
+        <li><%= link_to "All News",  all_news_news_index_path(user_id: @user.id)%></li>
+        <li><%= link_to "Read News",  my_news_news_index_path(user_id: @user.id)%></li>
+        <%end%>
+    </div>
+</body>
+</html>

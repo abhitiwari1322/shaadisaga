@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<title>My Newsfeed</title>
+
+<body>
+<div>
+    <h1>Newsfeed</h1>
+    <div>
+        <% if @newsfeeds.nil? %>
+            <p> You have not marked any news as read.</p>
+            <% else %>
+            <% @newsfeeds.each do |newsfeed| %>
+               
+                    <h3>
+                        <%= link_to newsfeed.title, news_path(user_id: @user.id,id: newsfeed.id) %>
+                    </h3>
+                    <p>
+                        <%=  newsfeed.description %>
+                    </p>
+                    <ul>
+                        <li><%= link_to "Back", news_index_path(user_id: @user.id) %></li>
+                        <li><%= link_to "Delete", mark_as_delete_news_index_path(user_id: @user.id, news_id: newsfeed.id), method: :post %></li>
+
+                    </ul>            
+                <% end %>
+            <% end %>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<title>My Newsfeed</title>
+
+<body>
+
+    <h1>Newsfeed</h1>
+    <div>
+        <% @newsfeeds.each do |newsfeed| %>      
+            <div>
+                <h3>
+                    <%= link_to newsfeed.title, news_path(user_id: @user.id,id: newsfeed.id) %>
+                </h3>
+                <p>
+                    <%=  newsfeed.description %>
+                </p>
+                <ul>
+                    <li><%= link_to "Back", news_index_path(user_id: @user.id) %></li>
+                    <li><%= link_to "Mark_as_read", mark_as_read_news_index_path(user_id: @user.id, news_id: newsfeed.id), method: :post %></li>
+                    <li><%= link_to "Delete", mark_as_delete_news_index_path(user_id: @user.id, news_id: newsfeed.id), method: :post, notice: "Deleted news: #{newsfeed.title}" %></li>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+</body>
+
+</html>
